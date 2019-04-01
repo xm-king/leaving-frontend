@@ -1,0 +1,96 @@
+page {
+  height: 100%;
+  background-color: gainsboro;
+}
+
+.addlesson {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: white;
+}
+
+.addlesson button {
+  font-size: 12pt;
+  align-items: center;
+  border-radius: 0%; /*圆角弧度 */
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-top: 5rpx;
+}
+
+.addlesson button::after {
+  border: none;
+  padding: 0
+}
+
+.lesson {
+  height: 70px;
+  margin-top: 20px;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  border-radius: 5px; /*圆角弧度 */
+  border-color: black; /*边框颜色 */
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.mylesson {
+  margin-top: 20px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.slesson {
+  margin-left: 10px;
+  overflow: hidden; /*单行文本溢出*/
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: green;
+}
+
+.sclass {
+  margin-right: 10px;
+  overflow: hidden; /*单行文本溢出*/
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.setTime {
+  font-size: 8pt;
+  color: gainsboro;
+  margin-top: 10px;
+  margin-right: 5px;
+  text-align: right;
+}
+
+.picker_group {
+  height: 85rpx;
+  line-height: 85rpx;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  color: #888;
+  border-bottom: 1rpx solid #efefef;
+
+}
+
+.apply{
+  align-items: center;
+}
+
+.apply picker {
+  /* background-color: yellow; */
+  height: 55rpx;
+  line-height: 55rpx;
+  border: 1rpx solid white;
+  width: 100%;
+  margin-top: 10%;
+  background: white;
+}
+.apply button{
+  margin-top: 20%;
+}
