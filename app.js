@@ -1,6 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
+    wx.setStorageSync("relateBaby", "相家喻");
     wx.login({
       success: function (res) {
         var code = res.code;//发送给服务器的code
@@ -18,7 +19,7 @@ App({
             success: function (res) {
               //console.log(res.data);
               wx.setStorageSync('openid', res.data);//将获取信息写入本地缓存  
-              //wx.setStorageSync("relateBaby", "相家喻");
+              wx.setStorageSync("relateBaby", "相家喻");
             }
           })
         }

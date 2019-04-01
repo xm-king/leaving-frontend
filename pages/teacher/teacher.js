@@ -8,7 +8,7 @@ Page({
     bgcolor2: "white",
     ismine:false,
     listhidden: true,
-    formhidden: false,
+    applyhidden: false,
     startTime:"",
     endTime:""
   },
@@ -42,7 +42,7 @@ Page({
       bgcolor2: "white",
       ismine:false,
       listhidden:true,
-      formhidden:false
+      applyhidden:false
     })
   },
   history: function () {
@@ -51,7 +51,7 @@ Page({
       bgcolor2: "gainsboro",
       ismine: true,
       listhidden:false,
-      formhidden: true
+      applyhidden: true
     })
     },
   startDateChange: function (e) {
@@ -66,7 +66,7 @@ Page({
       endTime: e.detail.value
     })
   },
-  doApply: function () {
+  doAudit: function () {
     var openid = wx.getStorageInfoSync('openid');
     var startTime = this.data.startTime;
     var endTime = this.data.endTime;

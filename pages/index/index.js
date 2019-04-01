@@ -49,19 +49,8 @@ Page({
     index: 0,
   },
   //点击按钮弹出指定的hiddenmodalput弹出框
-  modalinput1: function (e) {
-    var that = this;
-    if (e.detail.userInfo != undefined) {
-      if (that.data.isRegister == false) {
-        that.setData({
-          hiddenmodalput: !that.data.hiddenmodalput,
-          hidden1: false,
-          hidden2: true,
-        })
-      } else {
-        wx.navigateTo({ url: '../student_lesson/student_lesson' })
-      }
-    }
+  teacherInput: function (e) {
+   wx.navigateTo({ url: '../teacher/teacher' })
   },
   parentInput: function (e) {
     console.log(e.detail.userInfo);
@@ -78,9 +67,6 @@ Page({
       //跳转到请假申请中
       wx.navigateTo({ url: '../student_lesson/student_lesson' })
     }
-  },
-  goLesson: function () {
-    wx.navigateTo({ url: '../lesson/lesson' })
   },
   //取消按钮
   cancel: function () {
@@ -142,6 +128,9 @@ Page({
       complete: function (res) { },
     })
     */
+    //
+    //绑定成功,跳转到请假申请中
+    wx.navigateTo({ url: '../student_lesson/student_lesson' })
   },
 
   /**
@@ -175,7 +164,6 @@ Page({
     }, 1500)
   },
   bindPickerChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       index: e.detail.value
     })

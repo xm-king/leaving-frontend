@@ -1,0 +1,43 @@
+<!--pages/student_lesson/student_lesson.wxml-->
+<view class='addlesson'>
+  <button style='background: {{bgcolor1}};' bindtap='apply'>待审批</button>
+  <button style='background: {{bgcolor2}};' bindtap='history'>当日请假</button>
+</view>
+
+<view hidden='{{applyhidden}}'>
+  <view class='content_item' wx:for="{{student_lesson}}" >
+    <template is="applyItem" data="{{...item}}" />
+  </view>
+</view>
+
+
+<view hidden='{{listhidden}}'>
+  <view class='mylesson'>
+      <text class='slesson'>宝贝名称</text>
+      <text class='sclass'>申请时间</text>
+      <text class='sclass'>状态</text>
+  </view>
+  <view class='content_item' wx:for="{{student_lesson}}" >
+    <template is="msgItem" data="{{...item}}" />
+  </view>
+</view>
+
+<template name="applyItem">
+  <view class='lesson' bindtap='addlesson' data-lesson='{{slesson}}'data-class='{{sclass}}'data-stime='{{setTime}}'>
+    <view class='mylesson'>
+      <text class='sclass'>{{slesson}}</text>
+      <text class='sclass'>{{applyTime}}</text>
+      <button class='sclass'>确认</button>
+    </view>
+  </view>
+</template>
+
+<template name="msgItem">
+  <view class='lesson' bindtap='addlesson' data-lesson='{{slesson}}'data-class='{{sclass}}'data-stime='{{setTime}}'>
+    <view class='mylesson'>
+      <text class='slesson'>{{slesson}}</text>
+      <text class='sclass'>{{applyTime}}</text>
+      <text class='sclass'>{{status}}</text>
+    </view>
+  </view>
+</template>
