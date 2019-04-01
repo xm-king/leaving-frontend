@@ -18,14 +18,16 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    var userid = wx.getStorageSync('openid');//用户id
+    var openid = wx.getStorageSync('openid');//用户id
     var relatedBaby = wx.getStorageSync("relateBaby");
     var res_data = [
       { 
+        id:'1',
         slesson: '相家喻', 
         applyTime: '2018-09-02', 
         status:'已确认'
     }, {
+        'id':'2',
         slesson: '相家喻', 
         applyTime: '2018-09-01',
         status: '已阅'

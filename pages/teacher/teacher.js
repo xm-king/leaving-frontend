@@ -66,10 +66,7 @@ Page({
       endTime: e.detail.value
     })
   },
-  doAudit: function () {
-    var openid = wx.getStorageInfoSync('openid');
-    var startTime = this.data.startTime;
-    var endTime = this.data.endTime;
-    console.log({ "openid": openid, "startTime": startTime,"endTime":endTime});
+  doAudit: function (e) {
+    console.log(e);
   },
 })

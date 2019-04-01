@@ -54,7 +54,8 @@ Page({
   },
   parentInput: function (e) {
     console.log(e.detail.userInfo);
-    var relateBaby = wx.getStorageSync("relateBaby");
+    //var relateBaby = wx.getStorageSync("relateBaby");
+    var relateBaby = '';
     console.log(relateBaby);
     if (!relateBaby) {
       //未关联宝贝,首先需要关联宝贝
@@ -140,7 +141,7 @@ Page({
     var that = this;
     var userid = wx.getStorageSync('openid');
     wx.request({
-      url: 'https://www.xxxxx.com/check_student.php',
+      url: 'https://www.xiangjiayu.com/check_student.php',
       data: { userid: userid },
       method: 'POST',
       header: { 'Content-Type': 'application/x-www-form-urlencoded' },
