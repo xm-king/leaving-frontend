@@ -1,7 +1,7 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/student_lesson/student_lesson",
+    "pages/student/student",
     "pages/teacher/teacher"
   ],
   "window":{

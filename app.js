@@ -5,10 +5,9 @@ App({
     wx.login({
       success: function (res) {
         var code = res.code;//发送给服务器的code
-        console.log(code);
         if (code) {
           wx.request({
-            url: 'https://www.xiangjiayu.com/gdxq/login.php',
+            url: 'http://localhost:8080/auth/login',
             data: {
               code: code,
             },
@@ -17,9 +16,9 @@ App({
               'content-type': 'application/json'
             },
             success: function (res) {
-              //console.log(res.data);
-              wx.setStorageSync('openid', res.data);//将获取信息写入本地缓存  
-             // wx.setStorageSync("relateBaby", "相家喻");
+              console.log(res.data.name);
+              wx.setStorageSync('openid', res.data.openid);//将获取信息写入本地缓存  
+              wx.setStorageSync("relateBaby", res.data.name);
             }
           })
         }

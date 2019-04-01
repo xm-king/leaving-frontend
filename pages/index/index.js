@@ -54,8 +54,7 @@ Page({
   },
   parentInput: function (e) {
     console.log(e.detail.userInfo);
-    //var relateBaby = wx.getStorageSync("relateBaby");
-    var relateBaby = '';
+    var relateBaby = wx.getStorageSync("relateBaby");
     console.log(relateBaby);
     if (!relateBaby) {
       //未关联宝贝,首先需要关联宝贝
@@ -66,7 +65,7 @@ Page({
       })
     }else{
       //跳转到请假申请中
-      wx.navigateTo({ url: '../student_lesson/student_lesson' })
+      wx.navigateTo({ url: '../student/student' })
     }
   },
   //取消按钮
@@ -91,47 +90,32 @@ Page({
     }
     var relatedBaby = that.data.array[that.data.index];
     var openid = wx.getStorageSync('openid'); 
+    console.log(openid);
     //建立绑定关系
-    /*
     wx.request({
-      url: 'https://www.xxxxx.com/sign.php',
+      url: 'http://localhost:8080/related/bind',
       data: {
-        userid: userid,
-        sname: that.data.sname,
-        snum: that.data.snum,
-        slesson: that.data.slesson,
-        sclass: that.data.sclass
+        openid: openid,
+        name: relatedBaby
       },
       method: 'POST',
       header: { 'Content-Type': 'application/x-www-form-urlencoded' },
       success: function (res) {
         //console.log(res.data)
-        if (res.data === "student") {
+        if (res.data === "success") {
           wx.showToast({
             title: '绑定成功！',
             icon: 'success'
           })
-          wx.navigateTo({ url: '../student_lesson/student_lesson' })
-          that.setData({
-            isRegister: true,
-          })
+          wx.navigateTo({ url: '../student/student' })
         } else {
           wx.showToast({
-            title: '绑定成功！',
+            title: '绑定失败！',
             icon: 'none'
           })
-          wx.navigateTo({ url: '../lesson/lesson' })
         }
-      },
-      fail: function (res) {
-
-      },
-      complete: function (res) { },
+      }
     })
-    */
-    //
-    //绑定成功,跳转到请假申请中
-    wx.navigateTo({ url: '../student_lesson/student_lesson' })
   },
 
   /**
@@ -139,22 +123,6 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    var userid = wx.getStorageSync('openid');
-    wx.request({
-      url: 'https://www.xiangjiayu.com/check_student.php',
-      data: { userid: userid },
-      method: 'POST',
-      header: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      success: function (res) {
-        if (res.data == null) {
-          that.setData({
-            isRegister: false
-          })
-        }
-      },
-      fail: function (res) { },
-      complete: function (res) { },
-    })
 
     wx.showLoading({
       title: '加载中',
