@@ -1,0 +1,19 @@
+<!--pages/student_lesson/student_lesson.wxml-->
+<view class='addlesson'>
+  <button style='background: {{bgcolor1}};' bindtap='all'>全部课程</button>
+  <button style='background: {{bgcolor2}};' bindtap='mine'>我的课程</button>
+</view>
+<template name="msgItem">
+  <view class='lesson' bindtap='addlesson' data-id='{{lessonid}}' data-lesson='{{slesson}}'data-class='{{sclass}}'data-stime='{{setTime}}'>
+    <view class='mylesson'>
+      <text class='slesson'>{{slesson}}</text>
+      <text class='sclass'>{{sclass}}</text>
+    </view>
+    <view class='setTime'>
+      <text>{{setTime}}</text>
+    </view>
+  </view>
+</template>
+<view class='content_item' wx:for="{{student_lesson}}">
+  <template is="msgItem" data="{{...item}}" />
+</view>

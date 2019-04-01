@@ -1,0 +1,18 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/sign/sign",
+    "pages/kaoqin/kaoqin",
+    "pages/student_lesson/student_lesson",
+    "pages/lesson/lesson",
+    "pages/s_signList/s_signList",
+    "pages/t_signList/t_signList",
+    "pages/queqinList/queqinList",
+    "pages/historyrecord/historyrecord"
+  ],
+  "window":{
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle":"black"
+  }
+}
