@@ -1,5 +1,4 @@
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -11,7 +10,43 @@ Page({
     sname: "",
     snum: "",
     slesson: "",
-    sclass: "",
+    sclass: "", 
+    array: ['请选择','姚沛阳',
+      '高雨暄',
+      '章宸恺',
+      '赵可馨',
+      '李丁睿',
+      '杨晨曦',
+      '刘宇恒',
+      '史语欣',
+      '姚宇浩',
+      '谢一晨',
+      '向妤轩',
+      '严熙程',
+      '童瑾荃',
+      '魏一诺',
+      '申屠子远',
+      '黄婉怡',
+      '相家喻',
+      '颜睿阳',
+      '江佑恩',
+      '刘芮琪',
+      '王梓芃',
+      '王彦喆',
+      '石啸奕',
+      '郑宇航',
+      '马筱语',
+      '庞瑾萱',
+      '赵恬歆',
+      '胡芯淼',
+      '朱可依',
+      '陶皓杨',
+      '王梦媛',
+      '陈俊豪',
+      '张雨萱',
+      '姚铮',
+      '周子茉'],
+    index: 0,
   },
   //点击按钮弹出指定的hiddenmodalput弹出框
   modalinput1: function (e) {
@@ -28,13 +63,20 @@ Page({
       }
     }
   },
-  modalinput2: function (e) {
-    if (e.detail.userInfo != undefined) {
+  parentInput: function (e) {
+    console.log(e.detail.userInfo);
+    var relateBaby = wx.getStorageSync("relateBaby");
+    console.log(relateBaby);
+    if (!relateBaby) {
+      //未关联宝贝,首先需要关联宝贝
       this.setData({
         hiddenmodalput: !this.data.hiddenmodalput,
         hidden1: true,
         hidden2: false,
       })
+    }else{
+      //跳转到请假申请中
+      wx.navigateTo({ url: '../student_lesson/student_lesson' })
     }
   },
   goLesson: function () {
@@ -52,37 +94,18 @@ Page({
     this.setData({
       hiddenmodalput: true,
     })
-    if ((that.data.sname && that.data.snum) || (that.data.slesson && that.data.sclass) != '') {
-      this.charu()
-      this.setData({
-        slesson: "",
-        sclass: "",
-      })
-    } else {
+    //检查输入的宝贝名称
+    if(that.data.index == 0){
       wx.showToast({
-        title: '输入为空(+_+)?',
-        icon: 'none'
+        title: '请选择有效的宝贝名称',
+        icon:"none"
       })
+      return;
     }
-  },
-
-  //获取input的信息
-  setname: function (e) {
-    this.setData({ sname: e.detail.value })
-  },
-  setnum: function (e) {
-    this.setData({ snum: e.detail.value })
-  },
-  setlesson: function (e) {
-    this.setData({ slesson: e.detail.value })
-  },
-  setclass: function (e) {
-    this.setData({ sclass: e.detail.value })
-  },
-
-  charu: function () {
-    var that = this;
-    var userid = wx.getStorageSync('openid');
+    var relatedBaby = that.data.array[that.data.index];
+    var openid = wx.getStorageSync('openid'); 
+    //建立绑定关系
+    /*
     wx.request({
       url: 'https://www.xxxxx.com/sign.php',
       data: {
@@ -98,7 +121,7 @@ Page({
         //console.log(res.data)
         if (res.data === "student") {
           wx.showToast({
-            title: '添加成功！',
+            title: '绑定成功！',
             icon: 'success'
           })
           wx.navigateTo({ url: '../student_lesson/student_lesson' })
@@ -107,7 +130,7 @@ Page({
           })
         } else {
           wx.showToast({
-            title: '添加成功！',
+            title: '绑定成功！',
             icon: 'none'
           })
           wx.navigateTo({ url: '../lesson/lesson' })
@@ -118,6 +141,7 @@ Page({
       },
       complete: function (res) { },
     })
+    */
   },
 
   /**
@@ -150,56 +174,11 @@ Page({
       wx.hideLoading()
     }, 1500)
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+  bindPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      hiddenmodalput: true
+      index: e.detail.value
     })
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
+
 })
