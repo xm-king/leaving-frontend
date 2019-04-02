@@ -5,7 +5,7 @@
 </view>
 
 <view hidden='{{applyhidden}}'>
-  <view class='content_item' wx:for="{{student_lesson}}" >
+  <view class='content_item' wx:for="{{apply_data}}" >
     <template is="applyItem" data="{{...item}}" />
   </view>
 </view>
@@ -14,30 +14,30 @@
 <view hidden='{{listhidden}}'>
   <view class='mylesson'>
       <text class='slesson'>宝贝名称</text>
-      <text class='sclass'>申请时间</text>
-      <text class='sclass'>状态</text>
+      <text class='sclass'>请假时间</text>
+       <text class='sclass'>状态</text>
   </view>
-  <view class='content_item' wx:for="{{student_lesson}}" >
+  <view class='content_item' wx:for="{{list_data}}" >
     <template is="msgItem" data="{{...item}}" />
   </view>
 </view>
 
 <template name="applyItem">
-  <view class='lesson' bindtap='doAudit' data-lesson='{{slesson}}'data-class='{{sclass}}'data-stime='{{setTime}}'>
+  <view class='lesson' bindtap='doAudit' data-applyId='{{applyId}}'>
     <view class='mylesson'>
-      <text class='sclass'>{{slesson}}</text>
-      <text class='sclass'>{{applyTime}}</text>
-      <button data-id= '{{id}}' class='sclass'>确认</button>
+      <text class='sclass'>{{name}}</text>
+      <text class='sclass'>{{startTime}}-{{endTime}}</text>
+      <button data-applyId= '{{applyId}}' class='sclass'>确认</button>
     </view>
   </view>
 </template>
 
 <template name="msgItem">
-  <view class='lesson' bindtap='addlesson' data-lesson='{{slesson}}'data-class='{{sclass}}'data-stime='{{setTime}}'>
+  <view class='lesson'>
     <view class='mylesson'>
-      <text class='slesson'>{{slesson}}</text>
-      <text class='sclass'>{{applyTime}}</text>
-      <text class='sclass'>{{status}}</text>
+      <text class='sclass'>{{name}}</text>
+      <text class='sclass'>{{startTime}}-{{endTime}}</text>
+      <text class='sclass'>{{statusDesc}}</text>
     </view>
   </view>
 </template>

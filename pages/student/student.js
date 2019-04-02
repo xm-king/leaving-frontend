@@ -13,30 +13,6 @@ Page({
     endTime:""
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    var that = this;
-    var openid = wx.getStorageSync('openid');//用户id
-    var relatedBaby = wx.getStorageSync("relateBaby");
-    var res_data = [
-      { 
-        id:'1',
-        slesson: '相家喻', 
-        applyTime: '2018-09-02', 
-        status:'已确认'
-    }, {
-        'id':'2',
-        slesson: '相家喻', 
-        applyTime: '2018-09-01',
-        status: '已阅'
-      }];
-    that.setData({
-      student_lesson: res_data
-    })
-
-  },
   apply: function () {
     this.onLoad();
     this.setData({
@@ -47,15 +23,44 @@ Page({
       formhidden:false
     })
   },
+
   history: function () {
     this.setData({
       bgcolor1: "white",
       bgcolor2: "gainsboro",
       ismine: true,
-      listhidden:false,
+      listhidden: false,
       formhidden: true
+    });
+
+    var openid = wx.getStorageSync('openid');//用户id
+    var name = wx.getStorageSync("relateBaby");
+    //请求请假数据
+    var that = this;
+    wx.request({
+      url: 'http://localhost:8080/student/list',
+      data: {
+        openid: openid,
+        name: name
+      },
+      method: 'POST',
+      header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      success: function (res) {
+        if (res.data.result === true) {
+          //设置数据
+          that.setData({
+            student_lesson: res.data.data
+          })
+        } else {
+          wx.showToast({
+            title: '查询失败,请联系管理员',
+            icon: 'none'
+          })
+        }
+      }
     })
-    },
+  },
+
   startDateChange: function (e) {
     console.log(e)
       this.setData({
@@ -69,9 +74,35 @@ Page({
     })
   },
   doApply: function () {
-    var openid = wx.getStorageInfoSync('openid');
+    var openid = wx.getStorageSync('openid');//用户id
+    var name = wx.getStorageSync("relateBaby");
     var startTime = this.data.startTime;
     var endTime = this.data.endTime;
-    console.log({ "openid": openid, "startTime": startTime,"endTime":endTime});
+    console.log(openid);
+    wx.request({
+      url: 'http://localhost:8080/student/apply',
+      data: {
+        openid: openid,
+        startTime: startTime,
+        endTime: endTime,
+        name: name
+      },
+      method: 'POST',
+      header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      success: function (res) {
+        console.log(res.data.result);
+        if (res.data.result == true) {
+          wx.showToast({
+            title: '申请成功',
+            icon: 'none'
+          })
+        } else {
+          wx.showToast({
+            title: '申请失败,请联系管理员',
+            icon: 'none'
+          })
+        }
+      }
+    })
   },
 })

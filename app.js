@@ -16,8 +16,8 @@ App({
               'content-type': 'application/json'
             },
             success: function (res) {
-              console.log(res.data.name);
-              wx.setStorageSync('openid', res.data.openid);//将获取信息写入本地缓存  
+              //将获取信息写入本地缓存 
+              wx.setStorageSync('openid', res.data.openid); 
               wx.setStorageSync("relateBaby", res.data.name);
             }
           })

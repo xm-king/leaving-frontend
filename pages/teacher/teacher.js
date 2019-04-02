@@ -3,7 +3,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    student_lesson: [],
+    apply_data: [],
+    list_data: [],
     bgcolor1: "gainsboro",
     bgcolor2: "white",
     ismine:false,
@@ -18,22 +19,16 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    var userid = wx.getStorageSync('openid');//用户id
-    var relatedBaby = wx.getStorageSync("relateBaby");
-    var res_data = [
-      { 
-        slesson: '相家喻', 
-        applyTime: '2018-09-02', 
-        status:'已确认'
-    }, {
-        slesson: '相家喻', 
-        applyTime: '2018-09-01',
-        status: '已阅'
-      }];
-    that.setData({
-      student_lesson: res_data
+    wx.request({
+      url: 'http://localhost:8080/teacher/list',
+      method: 'GET',
+      success: function (res) {
+        console.log(res.data);
+        that.setData({
+          apply_data: res.data
+        })
+      }
     })
-
   },
   apply: function () {
     this.onLoad();
@@ -46,6 +41,17 @@ Page({
     })
   },
   history: function () {
+    var that = this;
+    wx.request({
+      url: 'http://localhost:8080/teacher/lastList',
+      method: 'GET',
+      success: function (res) {
+        console.log(res.data);
+        that.setData({
+          list_data: res.data
+        })
+      }
+    })
     this.setData({
       bgcolor1: "white",
       bgcolor2: "gainsboro",
@@ -67,6 +73,29 @@ Page({
     })
   },
   doAudit: function (e) {
-    console.log(e);
+    var applyId = e.currentTarget.dataset.applyid;
+    wx.request({
+      url: 'http://localhost:8080/teacher/audit',
+      data: {
+        applyId: applyId
+      },
+      method: 'POST',
+      header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      success: function (res) {
+        console.log(res.data.result);
+        if (res.data == 'SUCCESS') {
+          wx.showToast({
+            title: '审批成功',
+            icon: 'none'
+          })
+          onLoad();
+        } else {
+          wx.showToast({
+            title: '审批失败,请联系管理员',
+            icon: 'none'
+          })
+        }
+      }
+    })
   },
 })

@@ -50,10 +50,43 @@ Page({
   },
   //点击按钮弹出指定的hiddenmodalput弹出框
   teacherInput: function (e) {
-   wx.navigateTo({ url: '../teacher/teacher' })
+    var openid = wx.getStorageSync('openid'); 
+    wx.request({
+      url: 'http://localhost:8080/teacher/check',
+      data: {
+        openid: openid
+      },
+      method: 'POST',
+      header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      success: function (res) {
+        console.log(res.data.result);
+        if (res.data == "YES") {
+          //校验老师身份
+          wx.navigateTo({ url: '../teacher/teacher' })
+        } else {
+          wx.showToast({
+            title: '你是不是手滑啦,只有老师才允许进入哦',
+            icon: 'none'
+          })
+        }
+      }
+    })
   },
   parentInput: function (e) {
     console.log(e.detail.userInfo);
+    var openid = wx.getStorageSync("openid");
+    wx.request({
+      url: 'http://localhost:8080/student/update',
+      data: {
+        openid: openid,
+        nick: e.detail.userInfo.nickName
+      },
+      method: 'POST',
+      header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      success: function (res) {
+        console.log(res.data)
+      }
+    })
     var relateBaby = wx.getStorageSync("relateBaby");
     console.log(relateBaby);
     if (!relateBaby) {
@@ -93,7 +126,7 @@ Page({
     console.log(openid);
     //建立绑定关系
     wx.request({
-      url: 'http://localhost:8080/related/bind',
+      url: 'http://localhost:8080/student/bind',
       data: {
         openid: openid,
         name: relatedBaby
@@ -107,6 +140,7 @@ Page({
             title: '绑定成功！',
             icon: 'success'
           })
+          wx.setStorageSync("relateBaby", relatedBaby);
           wx.navigateTo({ url: '../student/student' })
         } else {
           wx.showToast({

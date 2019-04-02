@@ -23,7 +23,7 @@
 <view hidden='{{listhidden}}'>
   <view class='mylesson'>
       <text class='slesson'></text>
-      <text class='sclass'>申请时间</text>
+      <text class='sclass'>请假时间</text>
       <text class='sclass'>状态</text>
   </view>
   <view class='content_item' wx:for="{{student_lesson}}" >
@@ -31,14 +31,11 @@
   </view>
 </view>
 <template name="msgItem">
-  <view class='lesson' bindtap='addlesson' data-lesson='{{slesson}}'data-class='{{sclass}}'data-stime='{{setTime}}'>
+  <view class='lesson'>
     <view class='mylesson'>
-      <text class='slesson'>{{slesson}}</text>
-      <text class='sclass'>{{applyTime}}</text>
-      <text class='sclass'>{{status}}</text>
-    </view>
-    <view class='setTime'>
-      <text>{{setTime}}</text>
+      <text class='slesson'>{{name}}</text>
+      <text class='sclass'>{{startTime}}-{{endTime}}</text>
+      <text class='sclass'>{{statusDesc}}</text>
     </view>
   </view>
 </template>
