@@ -52,7 +52,7 @@ Page({
   teacherInput: function (e) {
     var openid = wx.getStorageSync('openid'); 
     wx.request({
-      url: 'http://localhost:8080/teacher/check',
+      url: 'https://www.xiangjiayu.com:8443/teacher/check',
       data: {
         openid: openid
       },
@@ -60,7 +60,7 @@ Page({
       header: { 'Content-Type': 'application/x-www-form-urlencoded' },
       success: function (res) {
         console.log(res.data.result);
-        if (res.data == "YES") {
+        if (res.data.result == true) {
           //校验老师身份
           wx.navigateTo({ url: '../teacher/teacher' })
         } else {
@@ -76,7 +76,7 @@ Page({
     console.log(e.detail.userInfo);
     var openid = wx.getStorageSync("openid");
     wx.request({
-      url: 'http://localhost:8080/student/update',
+      url: 'https://www.xiangjiayu.com:8443/student/update',
       data: {
         openid: openid,
         nick: e.detail.userInfo.nickName
@@ -126,7 +126,7 @@ Page({
     console.log(openid);
     //建立绑定关系
     wx.request({
-      url: 'http://localhost:8080/student/bind',
+      url: 'https://www.xiangjiayu.com:8443/student/bind',
       data: {
         openid: openid,
         name: relatedBaby
@@ -135,7 +135,7 @@ Page({
       header: { 'Content-Type': 'application/x-www-form-urlencoded' },
       success: function (res) {
         //console.log(res.data)
-        if (res.data === "success") {
+        if (res.data.result === true) {
           wx.showToast({
             title: '绑定成功！',
             icon: 'success'

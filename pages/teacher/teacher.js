@@ -20,7 +20,7 @@ Page({
   onLoad: function (options) {
     var that = this;
     wx.request({
-      url: 'http://localhost:8080/teacher/list',
+      url: 'https://www.xiangjiayu.com:8443/teacher/list',
       method: 'GET',
       success: function (res) {
         console.log(res.data);
@@ -43,7 +43,7 @@ Page({
   history: function () {
     var that = this;
     wx.request({
-      url: 'http://localhost:8080/teacher/lastList',
+      url: 'https://www.xiangjiayu.com:8443/teacher/lastList',
       method: 'GET',
       success: function (res) {
         console.log(res.data);
@@ -75,7 +75,7 @@ Page({
   doAudit: function (e) {
     var applyId = e.currentTarget.dataset.applyid;
     wx.request({
-      url: 'http://localhost:8080/teacher/audit',
+      url: 'https://www.xiangjiayu.com:8443/teacher/audit',
       data: {
         applyId: applyId
       },
@@ -83,12 +83,11 @@ Page({
       header: { 'Content-Type': 'application/x-www-form-urlencoded' },
       success: function (res) {
         console.log(res.data.result);
-        if (res.data == 'SUCCESS') {
+        if (res.data.result == true) {
           wx.showToast({
             title: '审批成功',
             icon: 'none'
           })
-          onLoad();
         } else {
           wx.showToast({
             title: '审批失败,请联系管理员',
