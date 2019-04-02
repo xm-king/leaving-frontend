@@ -38,7 +38,7 @@ Page({
     //请求请假数据
     var that = this;
     wx.request({
-      url: 'https://www.xiangjiayu.com:8443/student/list',
+      url: getApp().globalData.SERVER_URL +'/student/list',
       data: {
         openid: openid,
         name: name
@@ -80,7 +80,7 @@ Page({
     var endTime = this.data.endTime;
     console.log(openid);
     wx.request({
-      url:'https://www.xiangjiayu.com:8443/student/apply',
+      url: getApp().globalData.SERVER_URL +'/student/apply',
       data: {
         openid: openid,
         startTime: startTime,

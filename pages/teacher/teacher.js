@@ -20,7 +20,7 @@ Page({
   onLoad: function (options) {
     var that = this;
     wx.request({
-      url: 'https://www.xiangjiayu.com:8443/teacher/list',
+      url: getApp().globalData.SERVER_URL +'/teacher/list',
       method: 'GET',
       success: function (res) {
         console.log(res.data);
@@ -43,7 +43,7 @@ Page({
   history: function () {
     var that = this;
     wx.request({
-      url: 'https://www.xiangjiayu.com:8443/teacher/lastList',
+      url: getApp().globalData.SERVER_URL +'/teacher/lastList',
       method: 'GET',
       success: function (res) {
         console.log(res.data);
@@ -75,7 +75,7 @@ Page({
   doAudit: function (e) {
     var applyId = e.currentTarget.dataset.applyid;
     wx.request({
-      url: 'https://www.xiangjiayu.com:8443/teacher/audit',
+      url: getApp().globalData.SERVER_URL +'/teacher/audit',
       data: {
         applyId: applyId
       },

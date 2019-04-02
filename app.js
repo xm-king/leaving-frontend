@@ -7,7 +7,7 @@ App({
         var code = res.code;//发送给服务器的code
         if (code) {
           wx.request({
-            url: 'https://www.xiangjiayu.com:8443/auth/login',
+            url: getApp().globalData.SERVER_URL +'/auth/login',
             data: {
               code: code,
             },
@@ -31,6 +31,8 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    //SERVER_URL:"https://www.xiangjiayu.com:8443"
+    SERVER_URL: "http://127.0.0.1:8080"
   }
 })
