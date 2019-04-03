@@ -52,7 +52,7 @@ Page({
   teacherInput: function (e) {
     var openid = wx.getStorageSync('openid'); 
     wx.request({
-      url: 'https://www.xiangjiayu.com:8443/teacher/check',
+      url: getApp().globalData.SERVER_URL+'/teacher/check',
       data: {
         openid: openid
       },
@@ -76,7 +76,7 @@ Page({
     console.log(e.detail.userInfo);
     var openid = wx.getStorageSync("openid");
     wx.request({
-      url: 'https://www.xiangjiayu.com:8443/student/update',
+      url: getApp().globalData.SERVER_URL +'/student/update',
       data: {
         openid: openid,
         nick: e.detail.userInfo.nickName
@@ -126,7 +126,7 @@ Page({
     console.log(openid);
     //建立绑定关系
     wx.request({
-      url: 'https://www.xiangjiayu.com:8443/student/bind',
+      url: getApp().globalData.SERVER_URL +'/student/bind',
       data: {
         openid: openid,
         name: relatedBaby
