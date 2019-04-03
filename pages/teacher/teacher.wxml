@@ -12,11 +12,6 @@
 
 
 <view hidden='{{listhidden}}'>
-  <view class='mylesson'>
-      <text class='slesson'>宝贝名称</text>
-      <text class='sclass'>请假时间</text>
-       <text class='sclass'>状态</text>
-  </view>
   <view class='content_item' wx:for="{{list_data}}" >
     <template is="msgItem" data="{{...item}}" />
   </view>

@@ -5,11 +5,8 @@
 </view>
 
 <view hidden='{{formhidden}}' class='apply'>
-  <form bindsubmit='searchBox'>
-    <view>
-      <label for="telephone">联系电话:</label>
-      <input type="text" name="telephone" placeholder='请输入联系电话' value=''/>
-    </view>
+  <form bindsubmit='searchBox' style='width:80%'>
+
       <picker mode="date" name= "startTime" value="{{startTime}}"  bindchange="startDateChange">
           <view class="picker">
             开始时间: {{startTime}}
@@ -20,16 +17,14 @@
           结束时间: {{endTime}}
         </view>
       </picker>
+          <view>
+      <input type="text" name="telephone" placeholder='请输入联系电话' value=''/>
+    </view>
       <button style='font-size:12pt;color:green;' form-type='submit'>提交请假</button>
   </form>
 </view>
 
 <view hidden='{{listhidden}}'>
-  <view class='mylesson'>
-      <text class='slesson'></text>
-      <text class='sclass'>请假时间</text>
-      <text class='sclass'>状态</text>
-  </view>
   <view class='content_item' wx:for="{{student_lesson}}" >
     <template is="msgItem" data="{{...item}}" />
   </view>
