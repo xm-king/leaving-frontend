@@ -91,6 +91,15 @@ page {
   margin-top: 10%;
   background: white;
 }
+
+.apply input {
+  /* background-color: yellow; */
+  height: 55rpx;
+  line-height: 55rpx;
+  border: 1rpx solid white;
+  background: white;
+}
+
 .apply button{
   margin-top: 20%;
 }

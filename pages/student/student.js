@@ -10,7 +10,8 @@ Page({
     listhidden: true,
     formhidden: false,
     startTime:"",
-    endTime:""
+    endTime:"",
+    telephone:""
   },
 
   apply: function () {
@@ -73,19 +74,22 @@ Page({
       endTime: e.detail.value
     })
   },
-  doApply: function () {
+  searchBox: function (e) {
+    console.log(e.detail.value);
     var openid = wx.getStorageSync('openid');//用户id
     var name = wx.getStorageSync("relateBaby");
-    var startTime = this.data.startTime;
-    var endTime = this.data.endTime;
+    var startTime = e.detail.value.startTime;
+    var endTime = e.detail.value.endTime;
+    var telephone = e.detail.value.telephone;
     console.log(openid);
     wx.request({
-      url:'https://www.xiangjiayu.com:8443/student/apply',
+      url: 'https://www.xiangjiayu.com:8443/student/apply',
       data: {
         openid: openid,
         startTime: startTime,
         endTime: endTime,
-        name: name
+        name: name,
+        telephone: telephone
       },
       method: 'POST',
       header: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -104,5 +108,5 @@ Page({
         }
       }
     })
-  },
+  }
 })

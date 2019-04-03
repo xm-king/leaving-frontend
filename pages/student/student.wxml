@@ -5,20 +5,24 @@
 </view>
 
 <view hidden='{{formhidden}}' class='apply'>
-    <picker mode="date" value="{{startTime}}"  bindchange="startDateChange">
-        <view class="picker">
-          开始时间: {{startTime}}
-        </view>
-      </picker>
-    <picker mode="date" value="{{endTime}}" bindchange="endDateChange">
+  <form bindsubmit='searchBox'>
+    <view>
+      <label for="telephone">联系电话:</label>
+      <input type="text" name="telephone" placeholder='请输入联系电话' value=''/>
+    </view>
+      <picker mode="date" name= "startTime" value="{{startTime}}"  bindchange="startDateChange">
+          <view class="picker">
+            开始时间: {{startTime}}
+          </view>
+        </picker>
+      <picker mode="date" name="endTime" value="{{endTime}}" bindchange="endDateChange">
         <view class="picker">
           结束时间: {{endTime}}
         </view>
       </picker>
-      <button style='font-size:12pt;color:green;' bindtap='doApply'>提交请假</button>
+      <button style='font-size:12pt;color:green;' form-type='submit'>提交请假</button>
+  </form>
 </view>
-
-
 
 <view hidden='{{listhidden}}'>
   <view class='mylesson'>
